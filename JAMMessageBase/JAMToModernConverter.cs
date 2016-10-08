@@ -53,7 +53,10 @@ namespace JAMMessageBase
             ConvertSubfieldString(jamRecord, LoIDCodes.SUBJECT, ref modRecord.Subject);        
             ConvertSubfieldStringList(jamRecord, LoIDCodes.PATH2D, ref modRecord.Path2D);
             modRecord.TextHeb = ConvertBufferToHebrewString(jamRecord.MessageText);
-            modRecord.TextOrig = _hebrewEncoding.GetString(jamRecord.MessageText);
+            if (modRecord.TextHeb != null)
+            {
+                modRecord.TextOrig = _hebrewEncoding.GetString(jamRecord.MessageText);
+            }
             modRecord.MessageDate = new DateTime(1970, 1, 1).AddSeconds(jamRecord.Header.DateWritten);
             return modRecord;
         }
