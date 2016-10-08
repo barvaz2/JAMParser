@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NBidi-2005", "NBidi-2005.csproj", "{7E96C9A3-34EB-467E-B505-9FCBBD845949}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NBidiTests-2005", "NBidiTests\NBidiTests-2005.csproj", "{7F3C7CFA-97A7-4A2C-A31A-E7F8C84570E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnicodeDataCodeGenerator-2005", "UnicodeDataCodeGenerator\UnicodeDataCodeGenerator-2005.csproj", "{98F8683C-17C6-44E7-A3B2-D2FF4FB4EB2B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7E96C9A3-34EB-467E-B505-9FCBBD845949}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E96C9A3-34EB-467E-B505-9FCBBD845949}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E96C9A3-34EB-467E-B505-9FCBBD845949}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E96C9A3-34EB-467E-B505-9FCBBD845949}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F3C7CFA-97A7-4A2C-A31A-E7F8C84570E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F3C7CFA-97A7-4A2C-A31A-E7F8C84570E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F3C7CFA-97A7-4A2C-A31A-E7F8C84570E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F3C7CFA-97A7-4A2C-A31A-E7F8C84570E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98F8683C-17C6-44E7-A3B2-D2FF4FB4EB2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98F8683C-17C6-44E7-A3B2-D2FF4FB4EB2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98F8683C-17C6-44E7-A3B2-D2FF4FB4EB2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98F8683C-17C6-44E7-A3B2-D2FF4FB4EB2B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
