@@ -123,6 +123,11 @@ namespace ConvertJAMApp
                             recCount++;
                             ThreadSafeFacade.UpdateLabelText(l_UpperStatus, string.Format("Converting to modern format, {0} records processed", recCount.ToString()));
                         }
+
+                        AppendText("Serializing object to XML...\n");
+                        string xml = JAMToModernConverter.SerializeModernConferenceContent(modernConfContent);
+                        File.WriteAllText(confName + ".XML", xml);
+                        AppendText("Finished!\n");
                         
                     }
                 }

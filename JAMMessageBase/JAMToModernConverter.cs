@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace JAMMessageBase
 {
@@ -195,5 +198,22 @@ namespace JAMMessageBase
             return correctStr;
         }
 
+        public static string SerializeModernConferenceContent(ModernConferenceContent content)
+        {
+            XmlWriterSettings settings = new XmlWriterSettings();
+            settings.CheckCharacters = false;
+            XmlSerializer xsSubmit = new XmlSerializer(typeof(ModernConferenceContent));
+            
+            StringWriter sww = new StringWriter();
+
+            string xml = null;
+            using (XmlWriter writer = XmlWriter.Create(sww, settings))
+            {
+                xsSubmit.Serialize(writer, content);
+                xml = sww.ToString(); // Your XML
+            }
+
+            return xml;
+        }
     }
 }

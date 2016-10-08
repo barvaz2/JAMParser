@@ -130,7 +130,7 @@
             this.panel_messages.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel_messages.Location = new System.Drawing.Point(0, 68);
             this.panel_messages.Name = "panel_messages";
-            this.panel_messages.Size = new System.Drawing.Size(1221, 213);
+            this.panel_messages.Size = new System.Drawing.Size(1221, 80);
             this.panel_messages.TabIndex = 3;
             // 
             // dataGridView1
@@ -152,7 +152,7 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 28;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1221, 213);
+            this.dataGridView1.Size = new System.Drawing.Size(1221, 80);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -226,18 +226,19 @@
             this.panel_MessageText.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.panel_MessageText.Controls.Add(this.rtb_MessageText);
             this.panel_MessageText.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel_MessageText.Location = new System.Drawing.Point(0, 281);
+            this.panel_MessageText.Location = new System.Drawing.Point(0, 148);
             this.panel_MessageText.Name = "panel_MessageText";
             this.panel_MessageText.Padding = new System.Windows.Forms.Padding(15);
-            this.panel_MessageText.Size = new System.Drawing.Size(1221, 318);
+            this.panel_MessageText.Size = new System.Drawing.Size(1221, 451);
             this.panel_MessageText.TabIndex = 4;
             // 
             // rtb_MessageText
             // 
             this.rtb_MessageText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rtb_MessageText.Font = new System.Drawing.Font("Lucida Console", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtb_MessageText.Location = new System.Drawing.Point(15, 15);
             this.rtb_MessageText.Name = "rtb_MessageText";
-            this.rtb_MessageText.Size = new System.Drawing.Size(1191, 288);
+            this.rtb_MessageText.Size = new System.Drawing.Size(1191, 421);
             this.rtb_MessageText.TabIndex = 0;
             this.rtb_MessageText.Text = "";
             // 
