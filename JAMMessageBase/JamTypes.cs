@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 
 namespace JAMMessageBase
 {
-    public class JHRFileContent
+
+    public class JAMConferenceContent
     {
         public JHRHeader Header;
-        public List<JHRMessageRecord> MessageHeaders;
+        public List<JAMMessageRecord> MessageRecords;
     }
 
     [StructLayout(LayoutKind.Sequential, Size = 1024, CharSet = CharSet.Ansi, Pack = 1)]
@@ -53,10 +54,11 @@ namespace JAMMessageBase
     }
 
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack=1)]
-    public class JHRMessageRecord
+    public class JAMMessageRecord
     {
         public JHRMessageRecordHeader Header;
         public Dictionary<int,List<JHRMessageHeaderSubField>> SubFields;
+        public byte[] MessageText;
     }
 
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 1)]

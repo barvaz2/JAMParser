@@ -13,31 +13,55 @@ namespace JAMMessageBase
         ///<summary>
         ///ReadJHRFile returns description of error when it occurs. Otherwise it returns string.Empty
         ///</summary>
-        public static string ReadJHRFile(string fname, out JHRFileContent jhrContent)
+        public static string ReadJAMConference(string folderPath, string conferenceFileName, out JAMConferenceContent jhrContent)
         {
-            jhrContent = new JHRFileContent();
-            jhrContent.Header = new JHRHeader();
-            jhrContent.MessageHeaders = new List<JHRMessageRecord>();
-            if (!File.Exists(fname))
-                return "File not found";
+            string jhrFname = Path.Combine(folderPath, conferenceFileName + ".JHR");
+            string jdtFname = Path.Combine(folderPath, conferenceFileName + ".JDT");
 
-            byte[] buffer = File.ReadAllBytes(fname);
-            int offset = 0;
-            CopyVar<JHRHeader>(buffer, ref offset, ref jhrContent.Header);
+            jhrContent = new JAMConferenceContent();
+            jhrContent.Header = new JHRHeader();
+            jhrContent.MessageRecords = new List<JAMMessageRecord>();
+
+            if (!File.Exists(jhrFname))
+                return "JHR File not found";
+            if (!File.Exists(jdtFname))
+                return "JDT File not found";
+
+            byte[] jhrBuffer = File.ReadAllBytes(jhrFname);
+            int jhrOffset = 0;
+
+            byte[] jdtBuffer = File.ReadAllBytes(jdtFname);
+
+            CopyVar<JHRHeader>(jhrBuffer, ref jhrOffset, ref jhrContent.Header);
           
-            while (offset < buffer.Length)
+            while (jhrOffset < jhrBuffer.Length)
             {
-                JHRMessageRecord record;
-                ReadJHRMessageRecord(buffer, ref offset, out record);
-                jhrContent.MessageHeaders.Add(record);
+                JAMMessageRecord record;
+                ReadJHRMessageRecord(jhrBuffer, ref jhrOffset, out record);
+                PopulateMessageRecordText(jdtBuffer, ref record);
+                jhrContent.MessageRecords.Add(record);
             }
 
             return string.Empty;
         }
 
-        public static string ReadJHRMessageRecord(byte[] buffer, ref int offset, out JHRMessageRecord record)
+        private static void PopulateMessageRecordText(byte[] jdtBuffer, ref JAMMessageRecord record)
         {
-            record = new JHRMessageRecord();
+            if (null == record || null==record.Header)
+                return;
+
+            if (record.Header.TxtLen == 0 // Empty message
+                || (record.Header.Offset + record.Header.TxtLen) > jdtBuffer.Length // Mismatch between JHR and JDT file
+                || (record.Header.Attribute & (uint)MessageAttributes.MSG_DELETED) != 0) // Message was deleted and should be ignored
+                return;
+
+            record.MessageText = new byte[record.Header.TxtLen];
+            Buffer.BlockCopy(jdtBuffer, (int)record.Header.Offset, record.MessageText, 0, (int)record.Header.TxtLen);
+        }
+
+        public static string ReadJHRMessageRecord(byte[] buffer, ref int offset, out JAMMessageRecord record)
+        {
+            record = new JAMMessageRecord();
             record.Header = new JHRMessageRecordHeader();
 
             CopyVar<JHRMessageRecordHeader>(buffer, ref offset, ref record.Header);

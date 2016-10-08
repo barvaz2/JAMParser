@@ -17,7 +17,7 @@ namespace ConvertJAMApp
         public Form1()
         {
             InitializeComponent();
-            richTextBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+          //  rtb_StatusMessages.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
         }
 
         private bool isHeb(char c)
@@ -95,15 +95,15 @@ namespace ConvertJAMApp
 
         private void appendText(string s)
         {
-            if (richTextBox1.InvokeRequired)
+            if (rtb_StatusMessages.InvokeRequired)
             {
-                richTextBox1.BeginInvoke(new Action(()=>
+                rtb_StatusMessages.BeginInvoke(new Action(()=>
                     {
                         appendText(s);
                     }));
                 return;
             }
-            richTextBox1.AppendText(s);
+            rtb_StatusMessages.AppendText(s);
         }
 
         private void b_importFile_Click(object sender, EventArgs e)
@@ -136,16 +136,15 @@ namespace ConvertJAMApp
 
         private void b_jhr_Click(object sender, EventArgs e)
         {
-            string folder = @"D:\BBS\JAM\C_NET";
-            string areaName = "BIRTH";
-            string fname = Path.Combine(folder, areaName + ".JHR");
+            string folder = tb_ConfPath.Text;
+            string areaName = tb_ConfName.Text;       
 
-            JHRFileContent headerContent;
-            string error = JAMParser.ReadJHRFile(fname, out headerContent);
+            JAMConferenceContent confContent;
+            string error = JAMParser.ReadJAMConference(folder, areaName, out confContent);
 
             if (String.IsNullOrEmpty(error))
             {
-                appendText(string.Format("File {0} was sucessfully read\n",fname));
+                appendText(string.Format("Conference {0}\\{1} was sucessfully read\n",folder,areaName));
             }
             else
             {
