@@ -20,6 +20,7 @@ namespace ConvertJAMApp
         {
             InitializeComponent();
             this.WindowState = FormWindowState.Maximized;
+            dataGridView1.Columns[4].DefaultCellStyle.Format = "d";
         }
 
         static void DirSearch(string sDir, string searchPattern, ref List<string> retVal)
@@ -111,14 +112,14 @@ namespace ConvertJAMApp
                         ThreadSafeFacade.ClearDataGridView(dataGridView1);
                         foreach (ModernMessageRecord record in modernConfContent.MessageRecords)
                         {
-                            string[] sa = new string[6];
+                            object[] sa = new object[6];
                             sa[0] = record.MessageID;
                             sa[1] = record.From;
                             sa[2] = record.To;
                             sa[3] = record.Subject;
-                            sa[4] = record.MessageDate.ToString();
+                            sa[4] = record.MessageDate;
                             sa[5] = record.MessagePID;
-                            MessagesText[record.MessageID] = record.Text;
+                            MessagesText[record.MessageID] = record.TextOrig;
                             ThreadSafeFacade.AddRecordToDataGridView(dataGridView1, sa);
                             recCount++;
                             ThreadSafeFacade.UpdateLabelText(l_UpperStatus, string.Format("Converting to modern format, {0} records processed", recCount.ToString()));
@@ -165,7 +166,12 @@ namespace ConvertJAMApp
                     messageText = MessagesText[msgID];
                 }
             }
-            ThreadSafeFacade.UpdateRichTextboxText(rtb_MessageText, messageText);
+            ThreadSafeFacade.UpdateBrowserDocumentText(webBrowser1, GetHTML(messageText));
+        }
+
+        private string GetHTML(string messageText)
+        {
+            return string.Format("<!DOCTYPE html><html lang=\"en\" xmlns=\"http://www.w3.org/1999/xhtml\"><head><meta charset=\"utf-8\" /><title></title></head><body><pre><bdo dir=\"ltr\" style=\"font-family: monospace;\">{0}</bdo></pre></body></html>", messageText);
         }
     }
 }

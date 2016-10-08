@@ -48,6 +48,27 @@ namespace ConvertJAMApp
             rtb.Text = s;
         }
 
+        public static void UpdateBrowserDocumentText(WebBrowser wb, string s)
+        {
+            if (wb.InvokeRequired)
+            {
+                wb.BeginInvoke(new Action(() =>
+                {
+                    UpdateBrowserDocumentText(wb, s);
+                }));
+                return;
+            }
+            if (wb.Document == null)
+            {
+                wb.DocumentText = s;
+            }
+            else
+            {
+                wb.Document.OpenNew(true);
+                wb.Document.Write(s);
+            }
+        }
+
         public static void UpdateLabelText(Label l, string s)
         {
             if (l.InvokeRequired)

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.rtb_StatusMessages = new System.Windows.Forms.RichTextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
@@ -37,16 +38,16 @@
             this.b_importConferenceArea = new System.Windows.Forms.Button();
             this.panel_messages = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.l_UpperStatus = new System.Windows.Forms.Label();
+            this.panel_recordsProcessed = new System.Windows.Forms.Panel();
+            this.panel_MessageText = new System.Windows.Forms.Panel();
             this.clm_MessageID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clm_From = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clm_To = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clm_Subject = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clm_DateTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clm_MessagePID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.l_UpperStatus = new System.Windows.Forms.Label();
-            this.panel_recordsProcessed = new System.Windows.Forms.Panel();
-            this.panel_MessageText = new System.Windows.Forms.Panel();
-            this.rtb_MessageText = new System.Windows.Forms.RichTextBox();
+            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.panel1.SuspendLayout();
             this.panel_messages.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -156,6 +157,34 @@
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
+            // l_UpperStatus
+            // 
+            this.l_UpperStatus.AutoSize = true;
+            this.l_UpperStatus.Location = new System.Drawing.Point(13, 25);
+            this.l_UpperStatus.Name = "l_UpperStatus";
+            this.l_UpperStatus.Size = new System.Drawing.Size(0, 19);
+            this.l_UpperStatus.TabIndex = 6;
+            // 
+            // panel_recordsProcessed
+            // 
+            this.panel_recordsProcessed.Controls.Add(this.l_UpperStatus);
+            this.panel_recordsProcessed.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel_recordsProcessed.Location = new System.Drawing.Point(869, 0);
+            this.panel_recordsProcessed.Name = "panel_recordsProcessed";
+            this.panel_recordsProcessed.Size = new System.Drawing.Size(352, 68);
+            this.panel_recordsProcessed.TabIndex = 8;
+            // 
+            // panel_MessageText
+            // 
+            this.panel_MessageText.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel_MessageText.Controls.Add(this.webBrowser1);
+            this.panel_MessageText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel_MessageText.Location = new System.Drawing.Point(0, 148);
+            this.panel_MessageText.Name = "panel_MessageText";
+            this.panel_MessageText.Padding = new System.Windows.Forms.Padding(15);
+            this.panel_MessageText.Size = new System.Drawing.Size(1221, 451);
+            this.panel_MessageText.TabIndex = 4;
+            // 
             // clm_MessageID
             // 
             this.clm_MessageID.FillWeight = 180F;
@@ -190,6 +219,9 @@
             // 
             // clm_DateTime
             // 
+            dataGridViewCellStyle2.Format = "F";
+            dataGridViewCellStyle2.NullValue = null;
+            this.clm_DateTime.DefaultCellStyle = dataGridViewCellStyle2;
             this.clm_DateTime.FillWeight = 140F;
             this.clm_DateTime.HeaderText = "Date";
             this.clm_DateTime.Name = "clm_DateTime";
@@ -204,43 +236,16 @@
             this.clm_MessagePID.ReadOnly = true;
             this.clm_MessagePID.Width = 180;
             // 
-            // l_UpperStatus
+            // webBrowser1
             // 
-            this.l_UpperStatus.AutoSize = true;
-            this.l_UpperStatus.Location = new System.Drawing.Point(13, 25);
-            this.l_UpperStatus.Name = "l_UpperStatus";
-            this.l_UpperStatus.Size = new System.Drawing.Size(0, 19);
-            this.l_UpperStatus.TabIndex = 6;
-            // 
-            // panel_recordsProcessed
-            // 
-            this.panel_recordsProcessed.Controls.Add(this.l_UpperStatus);
-            this.panel_recordsProcessed.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel_recordsProcessed.Location = new System.Drawing.Point(869, 0);
-            this.panel_recordsProcessed.Name = "panel_recordsProcessed";
-            this.panel_recordsProcessed.Size = new System.Drawing.Size(352, 68);
-            this.panel_recordsProcessed.TabIndex = 8;
-            // 
-            // panel_MessageText
-            // 
-            this.panel_MessageText.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel_MessageText.Controls.Add(this.rtb_MessageText);
-            this.panel_MessageText.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel_MessageText.Location = new System.Drawing.Point(0, 148);
-            this.panel_MessageText.Name = "panel_MessageText";
-            this.panel_MessageText.Padding = new System.Windows.Forms.Padding(15);
-            this.panel_MessageText.Size = new System.Drawing.Size(1221, 451);
-            this.panel_MessageText.TabIndex = 4;
-            // 
-            // rtb_MessageText
-            // 
-            this.rtb_MessageText.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rtb_MessageText.Font = new System.Drawing.Font("Lucida Console", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rtb_MessageText.Location = new System.Drawing.Point(15, 15);
-            this.rtb_MessageText.Name = "rtb_MessageText";
-            this.rtb_MessageText.Size = new System.Drawing.Size(1191, 421);
-            this.rtb_MessageText.TabIndex = 0;
-            this.rtb_MessageText.Text = "";
+            this.webBrowser1.AccessibleRole = System.Windows.Forms.AccessibleRole.Text;
+            this.webBrowser1.AllowNavigation = false;
+            this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.webBrowser1.Location = new System.Drawing.Point(15, 15);
+            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser1.Name = "webBrowser1";
+            this.webBrowser1.Size = new System.Drawing.Size(1191, 421);
+            this.webBrowser1.TabIndex = 0;
             // 
             // Form1
             // 
@@ -276,16 +281,16 @@
         private System.Windows.Forms.TextBox tb_ConfPath;
         private System.Windows.Forms.Panel panel_messages;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label l_UpperStatus;
+        private System.Windows.Forms.Panel panel_recordsProcessed;
+        private System.Windows.Forms.Panel panel_MessageText;
         private System.Windows.Forms.DataGridViewTextBoxColumn clm_MessageID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clm_From;
         private System.Windows.Forms.DataGridViewTextBoxColumn clm_To;
         private System.Windows.Forms.DataGridViewTextBoxColumn clm_Subject;
         private System.Windows.Forms.DataGridViewTextBoxColumn clm_DateTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn clm_MessagePID;
-        private System.Windows.Forms.Label l_UpperStatus;
-        private System.Windows.Forms.Panel panel_recordsProcessed;
-        private System.Windows.Forms.Panel panel_MessageText;
-        private System.Windows.Forms.RichTextBox rtb_MessageText;
+        private System.Windows.Forms.WebBrowser webBrowser1;
     }
 }
 

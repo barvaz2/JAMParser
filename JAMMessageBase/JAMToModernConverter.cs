@@ -52,8 +52,8 @@ namespace JAMMessageBase
             ConvertSubfieldString(jamRecord, LoIDCodes.PID, ref modRecord.MessagePID);
             ConvertSubfieldString(jamRecord, LoIDCodes.SUBJECT, ref modRecord.Subject);        
             ConvertSubfieldStringList(jamRecord, LoIDCodes.PATH2D, ref modRecord.Path2D);
-            modRecord.Text = ConvertBufferToHebrewString(jamRecord.MessageText);
-
+            modRecord.TextHeb = ConvertBufferToHebrewString(jamRecord.MessageText);
+            modRecord.TextOrig = _hebrewEncoding.GetString(jamRecord.MessageText);
             modRecord.MessageDate = new DateTime(1970, 1, 1).AddSeconds(jamRecord.Header.DateWritten);
             return modRecord;
         }
@@ -94,7 +94,7 @@ namespace JAMMessageBase
         {
             if (null != buffer && buffer.Length > 0)
             {
-                string hebStr = _hebrewEncoding.GetString(buffer);
+                string hebStr= _hebrewEncoding.GetString(buffer);
                 hebStr = ReplaceMemSofit(hebStr);
                 return NBidi.NBidi.LogicalToVisual(hebStr);
               //  return JAMToModernConverter.ReverseHebrewInString(_hebrewEncoding.GetString(buffer));

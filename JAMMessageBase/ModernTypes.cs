@@ -23,7 +23,8 @@ namespace JAMMessageBase
         public string To;
         public List<string> ToAddress;
         public string Subject;
-        public string Text;
+        public string TextHeb;
+        public string TextOrig;
 
         public List<string> Path2D;
     }
