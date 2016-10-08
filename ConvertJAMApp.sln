@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConvertJAMApp", "ConvertJAM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JAMMessageBase", "JAMMessageBase\JAMMessageBase.csproj", "{4EDE51A3-E538-4DB3-9983-C3C0DAB49EF7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NBidi-2008", "ConvertJAMApp\NBidi_1.2.1.1_src\NBidi-2008.csproj", "{7E96C9A3-34EB-467E-B505-9FCBBD845949}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{4EDE51A3-E538-4DB3-9983-C3C0DAB49EF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4EDE51A3-E538-4DB3-9983-C3C0DAB49EF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4EDE51A3-E538-4DB3-9983-C3C0DAB49EF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E96C9A3-34EB-467E-B505-9FCBBD845949}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E96C9A3-34EB-467E-B505-9FCBBD845949}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E96C9A3-34EB-467E-B505-9FCBBD845949}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E96C9A3-34EB-467E-B505-9FCBBD845949}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

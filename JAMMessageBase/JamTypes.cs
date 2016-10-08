@@ -57,7 +57,7 @@ namespace JAMMessageBase
     public class JAMMessageRecord
     {
         public JHRMessageRecordHeader Header;
-        public Dictionary<int,List<JHRMessageHeaderSubField>> SubFields;
+        public Dictionary<LoIDCodes, List<JHRMessageHeaderSubField>> SubFields;
         public byte[] MessageText;
     }
 

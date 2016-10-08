@@ -40,11 +40,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="JAMParser.cs" />
+    <Compile Include="JAMToModernConverter.cs" />
     <Compile Include="JamTypes.cs" />
+    <Compile Include="ModernTypes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Jam.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ConvertJAMApp\NBidi_1.2.1.1_src\NBidi-2008.csproj">
+      <Project>{7e96c9a3-34eb-467e-b505-9fcbbd845949}</Project>
+      <Name>NBidi-2008</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

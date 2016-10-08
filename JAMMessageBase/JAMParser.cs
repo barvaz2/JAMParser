@@ -13,7 +13,7 @@ namespace JAMMessageBase
         ///<summary>
         ///ReadJHRFile returns description of error when it occurs. Otherwise it returns string.Empty
         ///</summary>
-        public static string ReadJAMConference(string folderPath, string conferenceFileName, out JAMConferenceContent jhrContent)
+        public static string ReadJAMConference(string folderPath, string conferenceFileName, out JAMConferenceContent jhrContent, Action<int> RecordsProcessedDel = null)
         {
             string jhrFname = Path.Combine(folderPath, conferenceFileName + ".JHR");
             string jdtFname = Path.Combine(folderPath, conferenceFileName + ".JDT");
@@ -33,13 +33,22 @@ namespace JAMMessageBase
             byte[] jdtBuffer = File.ReadAllBytes(jdtFname);
 
             CopyVar<JHRHeader>(jhrBuffer, ref jhrOffset, ref jhrContent.Header);
-          
+            int recCount = 0;
+            if (null != RecordsProcessedDel)
+            {
+                RecordsProcessedDel(recCount);
+            }
             while (jhrOffset < jhrBuffer.Length)
             {
                 JAMMessageRecord record;
                 ReadJHRMessageRecord(jhrBuffer, ref jhrOffset, out record);
                 PopulateMessageRecordText(jdtBuffer, ref record);
                 jhrContent.MessageRecords.Add(record);
+                recCount++;
+                if (null != RecordsProcessedDel)
+                {
+                    RecordsProcessedDel(recCount);
+                }
             }
 
             return string.Empty;
@@ -69,7 +78,7 @@ namespace JAMMessageBase
             if (record.Header.SubfieldLen > 0)
             {
                 int subfieldsOffsetEnd = offset + (int)record.Header.SubfieldLen;
-                record.SubFields = new Dictionary<int, List<JHRMessageHeaderSubField>>();
+                record.SubFields = new Dictionary<LoIDCodes, List<JHRMessageHeaderSubField>>();
                 while (offset < subfieldsOffsetEnd)
                 {
                     JHRMessageHeaderSubField subField = new JHRMessageHeaderSubField();
@@ -83,11 +92,14 @@ namespace JAMMessageBase
                         Buffer.BlockCopy(buffer, offset, subField.Buffer, 0, (int)subField.datlen);
                         offset += (int) subField.datlen;
                     }
-                    if (!record.SubFields.ContainsKey(subField.LoID))
+
+                    LoIDCodes loID = (LoIDCodes)subField.LoID;
+
+                    if (!record.SubFields.ContainsKey(loID))
                     {
-                        record.SubFields[subField.LoID] = new List<JHRMessageHeaderSubField>();
-                    }                  
-                    record.SubFields[subField.LoID].Add(subField);
+                        record.SubFields[loID] = new List<JHRMessageHeaderSubField>();
+                    }
+                    record.SubFields[loID].Add(subField);
                 }
             }
 
