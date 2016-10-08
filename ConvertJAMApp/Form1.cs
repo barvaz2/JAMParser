@@ -112,17 +112,20 @@ namespace ConvertJAMApp
                         ThreadSafeFacade.ClearDataGridView(dataGridView1);
                         foreach (ModernMessageRecord record in modernConfContent.MessageRecords)
                         {
-                            object[] sa = new object[6];
-                            sa[0] = record.MessageID;
-                            sa[1] = record.From;
-                            sa[2] = record.To;
-                            sa[3] = record.Subject;
-                            sa[4] = record.MessageDate;
-                            sa[5] = record.MessagePID;
-                            MessagesText[record.MessageID] = record.TextOrig;
-                            ThreadSafeFacade.AddRecordToDataGridView(dataGridView1, sa);
-                            recCount++;
-                            ThreadSafeFacade.UpdateLabelText(l_UpperStatus, string.Format("Converting to modern format, {0} records processed", recCount.ToString()));
+                            if (null != record.MessageID)
+                            {
+                                object[] sa = new object[6];
+                                sa[0] = recCount.ToString();
+                                sa[1] = record.From;
+                                sa[2] = record.To;
+                                sa[3] = record.Subject;
+                                sa[4] = record.MessageDate;
+                                sa[5] = record.MessagePID;
+                                MessagesText[recCount.ToString()] = record.TextOrig;
+                                ThreadSafeFacade.AddRecordToDataGridView(dataGridView1, sa);
+                                recCount++;
+                                ThreadSafeFacade.UpdateLabelText(l_UpperStatus, string.Format("Converting to modern format, {0} records processed", recCount.ToString()));
+                            }
                         }
 
                         AppendText("Serializing object to XML...\n");
